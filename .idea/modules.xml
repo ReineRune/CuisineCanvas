@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cuisineCanvas.iml" filepath="$PROJECT_DIR$/.idea/cuisineCanvas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CuisineCanvas.iml" filepath="$PROJECT_DIR$/.idea/CuisineCanvas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cuisineCanvas/cuisineCanvas.iml" filepath="$PROJECT_DIR$/cuisineCanvas/cuisineCanvas.iml" />
     </modules>
   </component>
 </project>
