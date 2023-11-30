@@ -2,14 +2,13 @@ package group4.cuisineCanvas.dto;
 
 import lombok.Data;
 
-import java.util.UUID;
+import java.util.Map;
 
 @Data
 public class PostARecipeDto {
 
     private String title;
     private String description;
-    private String ingredients;
-    private UUID userId;
+    private Map<String, Double> ingredients;
 
 }

@@ -1,14 +1,13 @@
 package group4.cuisineCanvas.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Entity
@@ -23,7 +22,16 @@ public class Recipe {
     private UUID id;
     private String title;
     private String description;
-    private String ingredients;
-    private UUID userId;
+
+    @ElementCollection
+    @CollectionTable(name = "recipe_ingredients", joinColumns = @JoinColumn(name = "recipeId"))
+    @MapKeyColumn(name = "ingredientsTitle")
+    @Column(name = "ingredientQuantity")
+    private Map<String, Double> ingredients;
+
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
 }
