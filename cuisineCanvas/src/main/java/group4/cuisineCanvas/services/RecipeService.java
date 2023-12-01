@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class RecipeService {
@@ -41,5 +43,9 @@ public class RecipeService {
         }
         return false;
 
+    }
+
+    public List<Recipe> getAllRecipes() {
+        return recipeRepository.findAll();
     }
 }
