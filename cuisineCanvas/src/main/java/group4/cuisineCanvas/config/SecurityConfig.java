@@ -40,7 +40,7 @@ public class SecurityConfig {
         security
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/signup", "/api/login", "/all-recipes").permitAll()
+                        .requestMatchers("/api/signup", "/api/login", "/recipe/all").permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(authProvider())
                 .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);

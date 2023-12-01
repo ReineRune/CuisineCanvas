@@ -3,6 +3,8 @@ package group4.cuisineCanvas.controllers;
 import group4.cuisineCanvas.dto.PostARecipeDto;
 import group4.cuisineCanvas.entities.ReactionType;
 import group4.cuisineCanvas.entities.Recipe;
+import group4.cuisineCanvas.entities.StarRating;
+import group4.cuisineCanvas.services.RatingService;
 import group4.cuisineCanvas.services.ReactionService;
 import group4.cuisineCanvas.services.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,8 @@ public class RecipeController {
 
     private final RecipeService recipeService;
     private final ReactionService reactionService;
+
+    private final RatingService ratingService;
 
     @PostMapping("/add")
     public ResponseEntity<String> addARecipe(@RequestHeader("Authorization") String token, @RequestBody PostARecipeDto postARecipeDto){
@@ -55,6 +59,24 @@ public class RecipeController {
         reactionService.reactToRecipe(token, recipeId, reactionType);
 
         return ResponseEntity.ok("Reaction processed successfully");
+    }
+
+    @PostMapping("/{recipeId}/rating")
+    public ResponseEntity<String> rateARecipe(
+            @RequestHeader("Authorization") String token,
+            @PathVariable UUID recipeId,
+            @RequestParam StarRating starRating) {
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Access denied!");
+        }
+
+        if (recipeId == null || starRating == null) {
+            return ResponseEntity.badRequest().body("RecipeID, and Star rating cannot be null");
+        }
+
+      ratingService.rateARecipe(token, recipeId, starRating);
+        return ResponseEntity.ok("Recipe rated successfully! ");
+
     }
 
 }
