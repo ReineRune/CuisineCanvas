@@ -1,6 +1,5 @@
 package group4.cuisineCanvas.services;
 
-import group4.cuisineCanvas.dto.CreateCommentDto;
 import group4.cuisineCanvas.entities.Comment;
 import group4.cuisineCanvas.entities.User;
 import group4.cuisineCanvas.exceptionsHandler.ValueCanNotBeNullException;
@@ -10,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,17 +19,19 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
 
-    public Comment addComment(CreateCommentDto createCommentDto, String token) throws ValueCanNotBeNullException {
+    public Comment addComment(String comment, String token, UUID recipeId) throws ValueCanNotBeNullException {
         String username=jwtService.extractUserNameFromToken(token);
         System.out.println("username is "+ username);
         User user= userRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("user with this email id is not available"));
         System.out.println("user is "+ user);
-        UUID userId= user.getId();
-        if(createCommentDto.getContent()==null || createCommentDto.getContent().isBlank() || createCommentDto.getContent().isEmpty()){
+        if(comment ==null ||  comment.isEmpty()){
             throw new ValueCanNotBeNullException("Comment can not be null");
         }
-        Comment newComment= Comment.builder().user(user).content(createCommentDto.getContent()).build();
+        System.out.println("1");
+        Comment newComment= Comment.builder().user(user).content(comment).recipe_id(recipeId).build();
+        System.out.println("new comment"+ newComment);
         commentRepository.save(newComment);
+
         return newComment;
     }
 }

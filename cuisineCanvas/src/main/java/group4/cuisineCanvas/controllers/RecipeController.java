@@ -1,20 +1,22 @@
 package group4.cuisineCanvas.controllers;
 
 import group4.cuisineCanvas.dto.PostARecipeDto;
+import group4.cuisineCanvas.entities.Recipe;
 import group4.cuisineCanvas.services.RecipeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/recipe")
 @RequiredArgsConstructor
 public class RecipeController {
 
     private final RecipeService recipeService;
 
-    @PostMapping("/add")
+    @PostMapping("/recipe/add")
     public ResponseEntity<String> addARecipe(@RequestHeader("Authorization") String token, @RequestBody PostARecipeDto postARecipeDto){
 
         boolean result = recipeService.addANewRecipe(token, postARecipeDto);
@@ -23,6 +25,12 @@ public class RecipeController {
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.ordinal()).body("Something went wrong! ");
         }
+    }
+
+    @GetMapping("/all-recipes")
+    public ResponseEntity<List<Recipe>> getAllRecipes(){
+        List<Recipe> result = recipeService.getAllRecipes();
+        return ResponseEntity.ok(result);
     }
 
 }

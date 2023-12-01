@@ -22,8 +22,7 @@ public class Comment {
     @JoinColumn(name = "userId")
     private User user;
 
-    //@OneToMany
-    //@JoinColumn(name="recipeId)
-    //private Recipe recipe;
+    private UUID recipe_id;
+
 
 }

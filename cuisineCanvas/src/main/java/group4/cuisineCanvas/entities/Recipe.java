@@ -29,9 +29,12 @@ public class Recipe {
     @Column(name = "ingredientQuantity")
     private Map<String, Double> ingredients;
 
-
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+
+    @OneToMany
+    @JoinColumn(name= "recipe_id")
+    private List<Comment> comments;
 
 }
