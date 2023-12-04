@@ -8,6 +8,7 @@ import group4.cuisineCanvas.entities.User;
 import group4.cuisineCanvas.services.RatingService;
 import group4.cuisineCanvas.services.ReactionService;
 import group4.cuisineCanvas.services.RecipeService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -111,6 +112,14 @@ public class RecipeController {
     ratingService.rateARecipe(token, recipeId, starRating);
     return ResponseEntity.ok("Recipe rated successfully! ");
 
+  }
+
+  @GetMapping("/{recipeId}/get-avg-rating")
+  public ResponseEntity<Double> getAverageRating(
+          @PathVariable UUID recipeId
+  ) {
+    double result = ratingService.getAverageRating(recipeId);
+    return ResponseEntity.ok(result);
   }
 
 }

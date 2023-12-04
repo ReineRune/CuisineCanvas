@@ -9,8 +9,14 @@ import group4.cuisineCanvas.entities.StarRating;
 import group4.cuisineCanvas.exceptionsHandler.ValueAlreadyExistsException;
 import group4.cuisineCanvas.repositories.RatingRepository;
 import group4.cuisineCanvas.repositories.UserRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -80,4 +86,18 @@ public class RatingService {
         }
     }
 
+    public double getAverageRating(UUID recipeId) {
+        List<Rating> ratingList = ratingRepository.findByRecipeId(recipeId);
+
+        if (ratingList.isEmpty()) {
+            return 0.0;
+        }
+
+        double averageRating = ratingList.stream()
+                .mapToDouble(rating -> rating.getStartRating().ordinal() + 1)
+                .average()
+                .orElse(0.0); // Handle the case where the average cannot be calculated (return a default value)
+
+        return averageRating;
+    }
 }
