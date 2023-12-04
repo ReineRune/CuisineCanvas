@@ -21,15 +21,11 @@ public class CommentService {
 
     public Comment addComment(String comment, String token, UUID recipeId) throws ValueCanNotBeNullException {
         String username=jwtService.extractUserNameFromToken(token);
-        System.out.println("username is "+ username);
         User user= userRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("user with this email id is not available"));
-        System.out.println("user is "+ user);
         if(comment ==null ||  comment.isEmpty()){
             throw new ValueCanNotBeNullException("Comment can not be null");
         }
-        System.out.println("1");
         Comment newComment= Comment.builder().user(user).content(comment).recipe_id(recipeId).build();
-        System.out.println("new comment"+ newComment);
         commentRepository.save(newComment);
 
         return newComment;

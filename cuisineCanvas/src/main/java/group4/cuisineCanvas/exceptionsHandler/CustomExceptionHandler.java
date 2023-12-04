@@ -31,5 +31,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 HttpStatusCode.valueOf(400), request);
     }
 
+    @ExceptionHandler(ValueAlreadyExistsException.class)
+    public ResponseEntity<Object> handleExistingValueException(ValueCanNotBeNullException e, WebRequest request){
+        var error= e.getMessage();
+        return handleExceptionInternal(e, error, new HttpHeaders(),
+                HttpStatusCode.valueOf(400), request);
+    }
+
     }
 
