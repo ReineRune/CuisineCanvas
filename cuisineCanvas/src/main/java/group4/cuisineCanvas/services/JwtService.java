@@ -16,7 +16,7 @@ import java.util.Date;
 public class JwtService {
 
     static private final String keySecret = "yE0fRHKerlbu6PiUfqtS2NYYEcDDXaHxUDyJYmgvQV8JUhWe4gCn4JXv2SYc4Dkw";
-    static private final int jwtExpiration = 100 * 60 * 60; // ms
+    static private final int jwtExpiration = 1000 * 60 * 60; // ms
 
     private Key getSignInKey() {
         byte[] keyByte = Decoders.BASE64.decode(keySecret);

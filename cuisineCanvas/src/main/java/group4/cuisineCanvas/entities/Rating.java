@@ -23,7 +23,8 @@ public class Rating {
 
     @NonNull
     @Enumerated(EnumType.STRING)
-    private StarRating startRating;
+    private StarRating starRating;
 
 
 }
+

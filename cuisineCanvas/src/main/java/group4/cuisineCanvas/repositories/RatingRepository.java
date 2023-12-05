@@ -1,7 +1,6 @@
 package group4.cuisineCanvas.repositories;
 
 import group4.cuisineCanvas.entities.Rating;
-import group4.cuisineCanvas.entities.Reaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
