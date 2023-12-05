@@ -49,7 +49,7 @@ public class CommentService {
     }
 
     // Only the author of the comment can update the comment.
-    public void updateComment(Comment editComment, UUID commentId, User user) throws AccessDeniedException {
+    public void updateComment(String editComment, UUID commentId, User user) throws AccessDeniedException {
 
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find a comment with that id"));
@@ -57,9 +57,10 @@ public class CommentService {
         if (!comment.getUser().getId().equals(user.getId())) {
             throw new AccessDeniedException("Only the comment author is allowed to edit the recipe");
         }
-
-        Optional.ofNullable(editComment.getContent()).ifPresent(comment::setContent);
-
+        if (editComment == null){
+            throw new ValueCanNotBeNullException("Comment can't be null. You can rather delete the comment.");
+        }
+        comment.setContent(editComment);
 
         commentRepository.save(comment);
     }

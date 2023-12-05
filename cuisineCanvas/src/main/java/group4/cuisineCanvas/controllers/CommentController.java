@@ -61,9 +61,9 @@ public class CommentController {
     }
 
     // To update a comment only by the author of the comment.
-    @PutMapping("/{commentId}/update")
+    @PutMapping("/{recipeId}/{commentId}/update")
     public ResponseEntity<String> commentRecipe(
-            @RequestBody Comment editComment,
+            @RequestBody String editedComment,
             @PathVariable UUID commentId,
             @AuthenticationPrincipal User user) throws AccessDeniedException {
 
@@ -71,7 +71,7 @@ public class CommentController {
             return ResponseEntity.badRequest().body("CommentID cannot be null");
         }
 
-        commentService.updateComment(editComment, commentId, user);
+        commentService.updateComment(editedComment, commentId, user);
 
         return ResponseEntity.ok("Comment updated");
 

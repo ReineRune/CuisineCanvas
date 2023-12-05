@@ -121,7 +121,7 @@ public class RecipeController {
     }
 
     // To search recipes by its title(title containing search words)
-    @GetMapping("/searchARecipe/{title}")
+    @GetMapping("/search-recipe/{title}")
     public ResponseEntity<List<Recipe>> searchARecipe(
             @PathVariable String title) {
         return ResponseEntity.ok(this.recipeService.searchRecipeByTitle(title));
