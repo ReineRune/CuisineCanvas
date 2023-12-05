@@ -122,4 +122,25 @@ public class RecipeController {
     return ResponseEntity.ok(result);
   }
 
+  @GetMapping("/searchARecipe/{title}")
+  public ResponseEntity <List<Recipe>> searchARecipe(
+          @PathVariable String title) {
+    return ResponseEntity.ok(this.recipeService.searchRecipeByTitle(title));
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

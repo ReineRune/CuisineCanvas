@@ -66,6 +66,7 @@ public class RecipeService {
     return recipeRepository.findAll();
   }
 
+
   public void deleteARecipe(User user, UUID recipeId) throws AccessDeniedException {
 
     Recipe recipe =
@@ -97,4 +98,15 @@ public class RecipeService {
     recipeRepository.save(recipe);
   }
 
+  public List<Recipe> searchRecipeByTitle(String title) {
+   List<Recipe> recipeList = recipeRepository.findRecipeByTitleContaining(title);
+
+    return recipeList;
+  }
 }
+
+
+
+
+
+
