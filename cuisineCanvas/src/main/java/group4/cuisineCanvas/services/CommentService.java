@@ -3,6 +3,7 @@ package group4.cuisineCanvas.services;
 import group4.cuisineCanvas.entities.Comment;
 import group4.cuisineCanvas.entities.Recipe;
 import group4.cuisineCanvas.entities.User;
+import group4.cuisineCanvas.exceptionsHandler.NoAccessToThisFeatureException;
 import group4.cuisineCanvas.exceptionsHandler.ValueCanNotBeNullException;
 import group4.cuisineCanvas.repositories.CommentRepository;
 import group4.cuisineCanvas.repositories.RecipeRepository;
@@ -30,7 +31,7 @@ public class CommentService {
     }
 
     // Only the author of the comment can delete a comment
-    public void deleteAComment(User user, UUID recipeId, UUID commentId) throws AccessDeniedException {
+    public void deleteAComment(User user, UUID recipeId, UUID commentId) throws NoAccessToThisFeatureException {
         Recipe recipe =
                 recipeRepository
                         .findById(recipeId)
@@ -42,7 +43,7 @@ public class CommentService {
                                 () -> new IllegalArgumentException("Could not find a comment with that id"));
 
         if (!comment.getUser().getId().equals(user.getId()) && !recipe.getUser().getId().equals(user.getId())) {
-            throw new AccessDeniedException("You can only delete your own comments");
+      throw new NoAccessToThisFeatureException("You can only delete your own comments");
         }
 
         commentRepository.deleteById(commentId);

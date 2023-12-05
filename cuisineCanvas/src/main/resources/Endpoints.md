@@ -1,24 +1,24 @@
 ************* Auth Controller *************
 
-1. http://localhost:9090/api/signup   - POST
+1. http://localhost:9393/api/signup   - POST
 
     {
-    "name" : "user1",
-    "email" : "user1.gmail.com",
+    "name" : "user4",
+    "email" : "user4.gmail.com",
     "password" : "password"
     }
 
-2. http://localhost:9090/api/login  - POST
+2. http://localhost:9393/api/login  - POST
 
     {
-    "email" : "user1.gmail.com"
+    "email" : "user1.gmail.com",
     "password" : "password"
     }
 
 
 ************** Recipe Controller **************
 
-1. http://localhost:9090/recipe/add  - POST
+1. http://localhost:9393/recipe/add  - POST
 
     {
     "title": "Chocolate Cake",
@@ -30,11 +30,11 @@
     }
     }
 
-2. http://localhost:9090/recipe/all  - GET
+2. http://localhost:9393/recipe/all  - GET
 
-3. http://localhost:9090/recipe/search-recipe/{title}  - GET
+3. http://localhost:9393/recipe/search-recipe/{title}  - GET
 
-4. http://localhost:9090/recipe/{recipeId}/update   - PUT
+4. http://localhost:9393/recipe/{recipeId}/update   - PUT
  
     {
     "description": "Dark chocolate cake recipe",
@@ -44,29 +44,29 @@
     "Cocoa Powder": 2.5
     }
     }
-5. http://localhost:9090/recipe/{recipeId}/delete   - DELETE
+5. http://localhost:9393/recipe/{recipeId}/delete   - DELETE
 
-6. http://localhost:9090/recipe/{recipeId}/reaction   - POST
+6. http://localhost:9393/recipe/{recipeId}/reaction   - POST
 
    Params -    reactionType : LIKE / DISLIKE
-7. http://localhost:9090/recipe/{recipeId}/rating   - POST
+7. http://localhost:9393/recipe/{recipeId}/rating   - POST
 
    Params-     starRating : ONE_STAR / TWO_STAR
-8. http://localhost:9090/recipe/{recipeId}/get-avg-rating   - GET
+8. http://localhost:9393/recipe/{recipeId}/get-avg-rating   - GET
 
 
 
 ******************** Comment Controller *****************
 
 
-1. http://localhost:9090/{recipeId}/comment/add   - POST
+1. http://localhost:9393/{recipeId}/comment/add   - POST
 
    Very nice recipe.
-2. http://localhost:9090/{recipeId}/{commentId}/update  - PUT
+2. http://localhost:9393/{recipeId}/{commentId}/update  - PUT
 
    A very nice recipe.
-3. http://localhost:9090/{recipeId}/{commentId}/delete  - DELETE
+3. http://localhost:9393/{recipeId}/{commentId}/delete  - DELETE
 
-4. http://localhost:9090/{commentId}/reaction   - POST
+4. http://localhost:9393/{commentId}/reaction   - POST
 
     Params-  reactionType   :  DISLIKE/LIKE
