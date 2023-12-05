@@ -34,7 +34,7 @@ public class Recipe {
     private User user;
 
     @OneToMany
-    @JoinColumn(name= "recipe_id")
+    @JoinColumn(name = "recipe_id")
     private List<Comment> comments;
 
 }

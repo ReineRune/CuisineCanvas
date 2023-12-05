@@ -20,7 +20,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
 
-
+    // To sign in an existing user with email as username.
     public String signIn(SignInDto signInDto) {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInDto.getEmail(), signInDto.getPassword()));
@@ -29,7 +29,7 @@ public class AuthenticationService {
         return jwtService.generateToken(user);
     }
 
-    // Create a new User
+    // To create a new User
     public boolean createUser(CreateUserDto createUserDto) {
         if (createUserDto.getEmail() == null || createUserDto.getEmail().isEmpty() || createUserDto.getEmail().isBlank()) {
             throw new IllegalArgumentException("Email can not be null! ");

@@ -34,7 +34,7 @@ public class SecurityConfig {
 
         return new BCryptPasswordEncoder();
     }
-
+    // Only searching recipes, login, signup should be available without login
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
         security
