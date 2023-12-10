@@ -34,13 +34,13 @@ public class SecurityConfig {
 
         return new BCryptPasswordEncoder();
     }
-
+    // Only searching recipes, login, signup should be available without login
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
         security
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/signup", "/api/login").permitAll()
+                        .requestMatchers("/api/signup", "/api/login", "/recipe/all","/recipe/search-recipe/*" , "/recipe/*/get-avg-rating").permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(authProvider())
                 .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
